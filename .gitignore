@@ -11,3 +11,6 @@ a.out
 # Generated Directories
 build/
 _tmp/
+bin/
+dev/
+obj/

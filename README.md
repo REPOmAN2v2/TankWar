@@ -37,7 +37,7 @@ The white player has 2 points for the commander tank in the enemy base and 2 x 1
 
 ##Version
 
-1.2
+1.5
 
 ##Compilation
 
