@@ -1,19 +1,27 @@
-# Author: TalosThoren
+# Authors: SanicEggnog, TalosThoren
 # Filename: Makefile
 # Date: July 2014
 # Description: Makefile for TankWar2D.
 
-ODIR=../obj
-BDIR=../bin
+ODIR=./obj
+BDIR=./bin
+SDIR=./src
 
 HEADERS := map.h render.h sdl.h endgame.h gameplay.h menu.h moves.h saves.h
 _OBJECTS := $(HEADERS:.h=.o)
 OBJECTS = $(patsubst %,$(ODIR)/%,$(_OBJECTS))
-LIBS := -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -luser32 -lgdi32 -lwinmm -ldxguid
+
+ifdef COMSPEC
+	LIBS := -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -luser32 -lgdi32 -lwinmm -ldxguid
+	CC = gcc
+else
+	LIBS := `sdl2-config --cflags --libs` -lSDL2_image -lSDL2_mixer -lSDL2_ttf
+	CC = g++
+endif
+
 INCLUDES := -I. -I$(ODIR)
 CFLAGS = -Wall -g -std=c11
-#NODEBUG = -O2 -std=c11 -mwindows
-CC = gcc
+#PRODCFLAGS = -O2 -std=c11 -mwindows
 
 default: TankWar2D
 
@@ -25,17 +33,17 @@ check: TankWar2D
 	./TankWar2D
 
 clean:
-	rm -rf ../obj/
-	rm -rf ../bin/
+	rm -rf ./obj/
+	rm -rf ./bin/TankWar2D
 	rm -f ./*~
 	rm -f ./*.swp
 
 rebuild: clean default
 
-TankWar2D: ${OBJECTS} include.h
-	${CC} $^ main.c $(INCLUDES) $(LIBS) $(CFLAGS) -o $(BDIR)/$@
+TankWar2D: ${OBJECTS} $(SDIR)/include.h
+	${CC} $^ $(SDIR)/main.c $(INCLUDES) $(LIBS) $(CFLAGS) -o $(BDIR)/$@
 
-$(ODIR)/%.o: %.c %.h include.h build
+$(ODIR)/%.o: $(SDIR)/%.c $(SDIR)/%.h $(SDIR)/include.h build
 	${CC} $< -c $(CFLAGS) -o $@
 
 .PHONY: default clean check dist distcheck install rebuild uninstall

@@ -58,6 +58,7 @@ int chooseTank(int *player, Tile **mapTiles, Tank *tank)
 	if ((*player == 1 && (tank->type == TANK1 || tank->type == TANK1_CMD))
 		|| (*player == 2 && (tank->type == TANK2 || tank->type == TANK2_CMD))) {
 		calculateMoves(*player, mapTiles, *tank);
+		mapTiles[tank->y][tank->x].tank = EMPTY;
 		return 1;
 	}
 
@@ -66,11 +67,7 @@ int chooseTank(int *player, Tile **mapTiles, Tank *tank)
 
 int dropTank(int *player, Tile **mapTiles, Textures *gameTextures, Tank *tank, SDL_Rect rect)
 {
-	if (tank->type == *player) {
-		mapTiles[rect.y][rect.x].tank = *player;
-	} else {
-		mapTiles[rect.y][rect.x].tank = *player + 2;
-	}
+	mapTiles[rect.y/TILE][rect.x/TILE].tank = tank->type;
 
 	for (size_t i=0; i<HEIGHT; i++) {
 		for (size_t j=0; j<WIDTH; j++) {

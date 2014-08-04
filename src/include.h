@@ -40,7 +40,7 @@ typedef struct _tile {
 	int terrain;
 	int tank;
     int passable;
-    int destructable;
+    //int destructable;
 } Tile;
 
 // Our textures
@@ -59,16 +59,6 @@ typedef struct _tank {
 
 extern SDL_Window *window;
 extern SDL_Renderer *renderer;
-
-/* Local Includes
-#include "menu.h"
-#include "sdl.h"
-#include "render.h"
-#include "map.h"
-#include "endgame.h"
-#include "gameplay.h"
-#include "moves.h"
-#include "saves.h"*/
 
 void launcher( int *player, Textures *gameTextures, Tile **mapTiles );
 

@@ -2,7 +2,7 @@
 
 void calculateMoves(int player, Tile **mapTiles, Tank tank)
 {
-	mapTiles[tank.x][tank.y].passable = 1;
+	mapTiles[tank.y][tank.x].passable = 1;
 
 	down(player, mapTiles, tank);
 	up(player, mapTiles, tank);
