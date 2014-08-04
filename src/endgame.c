@@ -4,11 +4,11 @@
 
 int checkEndGame(Textures *gameTextures, Tile **mapTiles)
 {
-	Score score1;
-	Score score2;
+	Score score1 = {0,0,0,0};
+	Score score2 = {0,0,0,0};
 
-	countTanks(&score1, mapTiles, TANK1, BASE2, 0); 
-	countTanks(&score2, mapTiles, TANK2, BASE1, 10);
+	countTanks(&score1, mapTiles, TANK1, BASE2, 10); 
+	countTanks(&score2, mapTiles, TANK2, BASE1, 0);
 
 	if (score1.count == 0 || score1.count == score1.stuck || score2.count == 0 || score2.count == score2.stuck) {
 		countPoints(mapTiles, &score1, TANK1, 10);
@@ -47,7 +47,7 @@ void countTanks(Score *score, Tile **mapTiles, int tank, int base, int origin)
 
 void countPoints(Tile **mapTiles, Score *score, int tank, int origin)
 {
-	if (mapTiles[origin][origin].tank == tank) {
+	if (mapTiles[origin][origin].tank == tank+2) {
 		score->total += 3;
 		--score->stuck;
 		--score->count;
@@ -65,7 +65,7 @@ void countPoints(Tile **mapTiles, Score *score, int tank, int origin)
 	}
 }
 
-int endGame(Textures *gameTextures, size_t score1, size_t score2) 
+int endGame(Textures *gameTextures, int score1, int score2) 
 {
 	EndScreen endscreen;
 	SDL_Event event;

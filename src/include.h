@@ -60,7 +60,7 @@ typedef struct _tank {
 extern SDL_Window *window;
 extern SDL_Renderer *renderer;
 
-void launcher( int *player, Textures *gameTextures, Tile **mapTiles );
+int launcher( int *player, Textures *gameTextures, Tile **mapTiles );
 
 // END of Inclusion Guard
 #endif

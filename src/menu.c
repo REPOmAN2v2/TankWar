@@ -34,10 +34,10 @@ void loadMenu(Menu *menu)
 	menu->tex_title = SDL_CreateTextureFromSurface(renderer, TTF_RenderText_Blended(font, "TankWar", black));
 
 	font = TTF_OpenFont("../resources/FORCED_SQUARE.ttf", 35);
-	menu->tex_load = SDL_CreateTextureFromSurface(renderer, TTF_RenderText_Blended(font, "Enter - continue a game", black));
-	menu->tex_new = SDL_CreateTextureFromSurface(renderer, TTF_RenderText_Blended(font, "N        - New Game", black));
+	menu->tex_load = SDL_CreateTextureFromSurface(renderer, TTF_RenderText_Blended(font, "Enter   - Continue the game", black));
+	menu->tex_new = SDL_CreateTextureFromSurface(renderer, TTF_RenderText_Blended(font, "N         - New Game", black));
 	menu->tex_quit = SDL_CreateTextureFromSurface(renderer, TTF_RenderText_Blended(font, "Escape - Quit the game", black));
-	menu->tex_music = SDL_CreateTextureFromSurface(renderer, TTF_RenderText_Blended(font, "M        - Play/Pause the music", black));
+	menu->tex_music = SDL_CreateTextureFromSurface(renderer, TTF_RenderText_Blended(font, "M         - Play/Pause the music", black));
 
 	TTF_CloseFont(font);
 

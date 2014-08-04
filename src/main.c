@@ -27,20 +27,19 @@ int main( int argc, char *argv[] )
     int player = ((rand()%2) + 1);
 
     Tile **mapTiles = generateMap();
-    fprintf(stdout, "Map Generated.\n");
     Textures *gameTextures = loadTextures();
     fprintf(stdout, "Textures loaded into memory.\n");
 
-    launcher(&player, gameTextures, mapTiles);
-
+    while(launcher(&player, gameTextures, mapTiles) != QUIT);
+    
     return 0;
 }
 
-void launcher( int *player, Textures *gameTextures, Tile **mapTiles )
+int launcher( int *player, Textures *gameTextures, Tile **mapTiles )
 {
-	fprintf(stdout, "Entered launcher.\n");
-
 	static size_t launches = 0;
+	fprintf(stdout, "Launches: %d\n", launches);
+
 	static Menu *menu = NULL;
 	if (menu == NULL) {
 		menu = (Menu*)malloc(sizeof(menu));
@@ -71,6 +70,8 @@ void launcher( int *player, Textures *gameTextures, Tile **mapTiles )
 		moveTank(player, gameTextures, mapTiles);
 
 		++launches;
-		launcher(player, gameTextures, mapTiles);
+		return 0;
 	}
+
+	return QUIT;
 }

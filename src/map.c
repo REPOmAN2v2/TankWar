@@ -1,4 +1,4 @@
-/* Authors: SanicEggnog, TalosThoren
+/* Authors: SanicEggnog
  * Filename: map.c
  * Date: July 2014
  * Description: Functions for initializing and interacting with the map.
@@ -53,6 +53,8 @@ Tile ** generateMap()
     mapTile[10][10].tank = TANK2_CMD;
 
     free(line);
+
+    fprintf(stdout, "Generated the map\n");
     return mapTile;
 }
 

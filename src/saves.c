@@ -36,6 +36,8 @@ void loadGame(int *player, Tile **mapTiles)
 	}
 
 	*player = line[WIDTH * HEIGHT] - '0';
+
+	fprintf(stdout, "Loaded the game\n");
 }
 
 void saveGame(int player, Tile **mapTiles)
@@ -53,4 +55,6 @@ void saveGame(int player, Tile **mapTiles)
 
 	fprintf(save, "%d", player);
 	fclose(save);
+
+	fprintf(stdout, "Saved the game\n");
 }
